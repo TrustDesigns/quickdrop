@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Become a Rider | QuickDrop</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<header class="main-nav">
+  <div class="nav-logo"><a href="index.html">QuickDrop</a></div>
+
+  <!-- Burger icon -->
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation links -->
+  <nav class="nav-menu" id="navMenu">
+    <ul class="nav-links">
+      <li><a href="book.html">Book</a></li>
+      <li><a href="signup.html">Become a Rider</a></li>
+      <li><a href="track.html">Track</a></li>
+    </ul>
+  </nav>
+</header>
+  <section class="signup-page">
+    <h1>Become a Rider</h1>
+    <form class="signup-form">
+      <label for="rider-name">Full Name</label>
+      <input type="text" id="rider-name" name="riderName" required />
+
+      <label for="rider-type">What type of rider are you?</label>
+      <select id="rider-type" name="riderType" required>
+        <option value="">Select One</option>
+        <option value="bike">Bike Owner</option>
+        <option value="car">Car Owner</option>
+        <option value="walker">Estate Walker</option>
+      </select>
+
+      <label for="rider-location">Your Area (e.g. Lekki Phase 1)</label>
+      <input type="text" id="rider-location" name="riderLocation" required />
+
+      <label for="rider-phone">Phone Number</label>
+      <input type="tel" id="rider-phone" name="riderPhone" required />
+
+      <label for="rider-id">Upload ID (optional)</label>
+      <input type="file" id="rider-id" name="riderID" accept="image/*" />
+
+      <button type="submit">Join QuickDrop</button>
+    </form>
+  </section>
+
+  <script>
+    const signupForm = document.querySelector('.signup-form');
+
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const rider = {
+        name: document.getElementById('rider-name').value,
+        type: document.getElementById('rider-type').value,
+        location: document.getElementById('rider-location').value,
+        phone: document.getElementById('rider-phone').value,
+        joinedAt: new Date().toISOString()
+        // Note: file upload is not processed in this simple demo
+      };
+
+      let riders = JSON.parse(localStorage.getItem('quickdropRiders')) || [];
+      riders.push(rider);
+      localStorage.setItem('quickdropRiders', JSON.stringify(riders));
+
+      signupForm.reset();
+
+      Swal.fire({
+        title: 'Welcome to QuickDrop!',
+        text: 'We’ll contact you once your account is activated.',
+        icon: 'success',
+        confirmButtonText: 'Great!',
+        confirmButtonColor: '#5A6BF5',
+        customClass: {
+          popup: 'booking-popup'
+        }
+      });
+    });
+  </script>
+<script>
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('navMenu');
+
+  burger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Optional: auto-close when a nav link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>

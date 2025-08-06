@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Delivery | QuickDrop</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<header class="main-nav">
+  <div class="nav-logo"><a href="index.html">QuickDrop</a></div>
+
+  <!-- Burger icon -->
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation links -->
+  <nav class="nav-menu" id="navMenu">
+    <ul class="nav-links">
+      <li><a href="book.html">Book</a></li>
+      <li><a href="signup.html">Become a Rider</a></li>
+      <li><a href="track.html">Track</a></li>
+    </ul>
+  </nav>
+</header>
+  <section class="booking-page">
+    <h1>Book a Delivery</h1>
+    <form class="booking-form">
+      <label for="sender">Your Name</label>
+      <input type="text" id="sender" name="sender" required>
+
+      <label for="pickup">Pickup Address</label>
+      <input type="text" id="pickup" name="pickup" required>
+
+      <label for="dropoff">Drop-off Address</label>
+      <input type="text" id="dropoff" name="dropoff" required>
+
+      <label for="deliveryType">Delivery Type</label>
+      <select id="deliveryType" name="deliveryType" required>
+        <option value="">Select One</option>
+        <option value="bike">Bike</option>
+        <option value="car">Car</option>
+        <option value="walker">Walker (Within Estate)</option>
+      </select>
+
+      <label for="description">Package Description</label>
+      <textarea id="description" name="description" rows="3" required></textarea>
+
+      <label for="phone">Your Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </section>
+<script>
+  const form = document.querySelector('.booking-form');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const sender = document.getElementById('sender').value;
+    const pickup = document.getElementById('pickup').value;
+    const dropoff = document.getElementById('dropoff').value;
+    const deliveryType = document.getElementById('deliveryType').value;
+    const description = document.getElementById('description').value;
+    const phone = document.getElementById('phone').value;
+
+    const booking = {
+      sender,
+      pickup,
+      dropoff,
+      deliveryType,
+      description,
+      phone,
+      date: new Date().toISOString()
+    };
+
+    let bookings = JSON.parse(localStorage.getItem('quickdropBookings')) || [];
+    bookings.push(booking);
+    localStorage.setItem('quickdropBookings', JSON.stringify(bookings));
+
+    form.reset();
+
+    // SweetAlert2 Popup
+    Swal.fire({
+      title: 'Delivery Booked!',
+      text: "We'll match you with a nearby rider shortly.",
+      icon: 'success',
+      confirmButtonText: 'Got it!',
+      confirmButtonColor: '#5A6BF5',
+      background: '#fff',
+      backdrop: `
+        rgba(0,0,0,0.4)
+        left top
+        no-repeat
+      `,
+      customClass: {
+        popup: 'booking-popup'
+      }
+    });
+  });
+</script>
+<script>
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('navMenu');
+
+  burger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Optional: auto-close when a nav link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

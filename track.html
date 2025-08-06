@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Your Delivery | QuickDrop</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <header class="main-nav">
+    <div class="nav-logo"><a href="index.html">QuickDrop</a></div>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="nav-menu" id="navMenu">
+      <ul class="nav-links">
+        <li><a href="book.html">Book</a></li>
+        <li><a href="signup.html">Become a Rider</a></li>
+        <li><a href="track.html">Track</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="track-page">
+    <h1>Track Your Delivery</h1>
+    <form class="track-form">
+      <label for="track-phone">Enter Your Phone Number</label>
+      <input type="tel" id="track-phone" name="trackPhone" required />
+      <button type="submit">Check Status</button>
+    </form>
+  </section>
+
+  <script>
+    // Burger nav
+    const burger = document.getElementById('burger');
+    const navMenu = document.getElementById('navMenu');
+    burger.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+    // Track logic
+    const trackForm = document.querySelector('.track-form');
+
+    trackForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const phone = document.getElementById('track-phone').value.trim();
+      const bookings = JSON.parse(localStorage.getItem('quickdropBookings')) || [];
+
+      const match = bookings.find(b => b.phone === phone);
+
+      if (match) {
+        Swal.fire({
+          title: '📦 Delivery Status',
+          html: `
+            <p><strong>Name:</strong> ${match.sender}</p>
+            <p><strong>Pickup:</strong> ${match.pickup}</p>
+            <p><strong>Drop-off:</strong> ${match.dropoff}</p>
+            <p><strong>Status:</strong> In Progress 🚚</p>
+          `,
+          icon: 'info',
+          confirmButtonText: 'Close'
+        });
+      } else {
+        Swal.fire({
+          title: 'Not Found',
+          text: 'No delivery found with that phone number.',
+          icon: 'error',
+          confirmButtonText: 'Try Again'
+        });
+      }
+
+      trackForm.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickDrop – Fast, Friendly Deliveries in Lagos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+ <header class="main-nav">
+  <div class="nav-logo"><a href="index.html">QuickDrop</a></div>
+
+  <!-- Burger icon -->
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation links -->
+  <nav class="nav-menu" id="navMenu">
+    <ul class="nav-links">
+      <li><a href="book.html">Book</a></li>
+      <li><a href="signup.html">Become a Rider</a></li>
+      <li><a href="track.html">Track</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <section class="hero">
+    <div class="hero-text">
+       
+      <h1>Send Anything, <span class="highlight">Anytime</span> in Lagos</h1>
+      <p>From food to fashion, QuickDrop delivers your goods safely and fast across the city.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn primary">Book a Delivery</a>
+        <a href="#" class="btn secondary">Become a Rider</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="drop.svg" alt="QuickDrop illustration">
+    </div>
+  </section>
+<section class="how-it-works">
+  <h2>How QuickDrop Works</h2>
+  <div class="steps-container">
+    <div class="step">
+      <span class="step-number">1</span>
+      <h3>Book a Delivery</h3>
+      <p>Enter pickup and drop-off locations right from your browser. No app download needed.</p>
+    </div>
+    <div class="step">
+      <span class="step-number">2</span>
+      <h3>We Match You</h3>
+      <p>QuickDrop finds the nearest available rider — from bike owners to friendly neighbors.</p>
+    </div>
+    <div class="step">
+      <span class="step-number">3</span>
+      <h3>Track + Receive</h3>
+      <p>Track your item in real-time and get updates until it's safely delivered.</p>
+    </div>
+  </div>
+</section>
+<section class="why-quickdrop">
+  <h2>Why Choose QuickDrop?</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <h3>🚀 Peer-to-Peer Power</h3>
+      <p>Let everyday people around you deliver your packages — faster, closer, and more flexible than any dispatch service.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>📱 No App Needed</h3>
+      <p>Use our mobile-friendly web app to book, pay, and track deliveries. No downloads. No hassle.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>💬 Real-Time Support</h3>
+      <p>Questions? Our WhatsApp support is just one tap away. Get help in real-time.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>💰 Affordable & Transparent</h3>
+      <p>No hidden charges. QuickDrop connects you with the closest available rider for the best price.</p>
+    </div>
+  </div>
+</section>
+<section class="highlight-testimonial">
+  <div class="highlight-card">
+    <p>“I delivered two small packages for neighbors in Lekki last weekend and made ₦3,000 with QuickDrop.”</p>
+    <span>– Aunty Nkechi, Weekend Walker 💁🏽‍♀️</span>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>QuickDrop</h3>
+      <p>Deliver anything. Anytime. Anywhere in Lagos.</p>
+    </div>
+    
+    <ul class="footer-links">
+      <li><a href="#">Book a Delivery</a></li>
+      <li><a href="#">Become a Rider</a></li>
+      <li><a href="#">Track Order</a></li>
+    </ul>
+
+    <div class="footer-contact">
+      <p>📱 WhatsApp: <a href="https://wa.me/234XXXXXXXXXX">Chat Now</a></p>
+      <p>✉️ Email: <a href="mailto:support@quickdrop.ng">support@quickdrop.ng</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 QuickDrop. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('navMenu');
+
+  burger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Optional: auto-close when a nav link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  });
+</script>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
